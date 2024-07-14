@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: development
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: password
+  jpa:
+    open-in-view: false
+server:
+  port: 7311
+---
+spring:
+  config:
+    activate:
+      on-profile: development
+  datasource:
+    url: jdbc:mysql:///dewey?serverTimezone=GMT%2B8
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  datasource:
+    url: jdbc:mysql://mysql/dewey?serverTimezone=GMT%2B8
