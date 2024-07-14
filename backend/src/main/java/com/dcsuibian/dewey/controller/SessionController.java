@@ -33,6 +33,8 @@ public class SessionController {
         User user = null;
         if (LoginVo.Type.PHONE_NUMBER_AND_PASSWORD.equals(loginVo.getType())) {
             user = userService.loginByPhoneNumberAndPassword(loginVo.getPhoneNumber(), loginVo.getPassword());
+        } else if (LoginVo.Type.PHONE_NUMBER_AND_VERIFICATION_CODE.equals(loginVo.getType())) {
+            user = userService.loginByPhoneNumberAndVerificationCode(loginVo.getPhoneNumber(), loginVo.getVerificationCode());
         } else {
             return ResponseWrapper.fail("不支持的登录方式", 400);
         }

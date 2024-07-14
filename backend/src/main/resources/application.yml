@@ -23,3 +23,6 @@ spring:
       on-profile: production
   datasource:
     url: jdbc:mysql://mysql/dewey?serverTimezone=GMT%2B8
+  data:
+    redis:
+      host: redis

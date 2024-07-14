@@ -11,9 +11,11 @@ public class LoginVo {
     private Type type;
     private String phoneNumber;
     private String password;
+    private String verificationCode;
 
     public enum Type {
-        PHONE_NUMBER_AND_PASSWORD("phone_number_and_password");
+        PHONE_NUMBER_AND_PASSWORD("phone_number_and_password"),
+        PHONE_NUMBER_AND_VERIFICATION_CODE("phone_number_and_verification_code");
         private final String code;
 
         Type(String code) {

@@ -4,9 +4,11 @@ interface Session {
   user: User
 }
 
-type Login = {
-  type: 'phone_number_and_password'
+interface Login {
+  type: 'phone_number_and_password' | 'phone_number_and_verification_code'
   phoneNumber: string
-  password: string
+  password?: string
+  verificationCode?: string
 }
+
 export type { Session, Login }
