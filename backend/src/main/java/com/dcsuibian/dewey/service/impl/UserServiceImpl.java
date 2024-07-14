@@ -1,6 +1,7 @@
 package com.dcsuibian.dewey.service.impl;
 
 import com.dcsuibian.dewey.entity.User;
+import com.dcsuibian.dewey.exception.BusinessException;
 import com.dcsuibian.dewey.po.UserPo;
 import com.dcsuibian.dewey.repository.UserPoRepository;
 import com.dcsuibian.dewey.service.UserService;
@@ -31,6 +32,21 @@ public class UserServiceImpl implements UserService {
             processForPublicAccess(user);
         }
         return page;
+    }
+
+    @Override
+    public User loginByPhoneNumberAndPassword(String phoneNumber, String password) {
+        Optional<UserPo> optional = poRepository.findByPhoneNumber(phoneNumber);
+        if (optional.isEmpty()) {
+            throw new BusinessException("用户名或密码错误");
+        }
+        UserPo po = optional.get();
+        if (!passwordEncoder.matches(password, po.getPassword())) {
+            throw new BusinessException("用户名或密码错误");
+        }
+        User user = UserPo.convert(po);
+        processForPrivateAccess(user);
+        return user;
     }
 
     private User getById(long id) {
