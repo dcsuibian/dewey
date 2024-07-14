@@ -7,8 +7,6 @@ spring:
     password: password
   jpa:
     open-in-view: false
-server:
-  port: 7311
 ---
 spring:
   config:
@@ -16,6 +14,8 @@ spring:
       on-profile: development
   datasource:
     url: jdbc:mysql:///dewey?serverTimezone=GMT%2B8
+server:
+  port: 7311
 ---
 spring:
   config:
@@ -23,3 +23,5 @@ spring:
       on-profile: production
   datasource:
     url: jdbc:mysql://mysql/dewey?serverTimezone=GMT%2B8
+server:
+  port: 80
