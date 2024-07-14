@@ -21,6 +21,7 @@ export default function Layout() {
     <ProLayout
       title="Dewey文库管理系统"
       layout="mix"
+      logo="/vite.svg"
       route={routes[0]}
       location={location}
       avatarProps={{
