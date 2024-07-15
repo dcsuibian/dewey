@@ -9,6 +9,14 @@ spring:
     open-in-view: false
 server:
   port: 7311
+alibaba:
+  cloud:
+    access-key-id: ${ALIBABA_CLOUD_ACCESS_KEY_ID}
+    access-key-secret: ${ALIBABA_CLOUD_ACCESS_KEY_SECRET}
+    sms:
+      endpoint: dysmsapi.aliyuncs.com
+      sign-name: 阿里云短信测试
+      template-code: SMS_154950909
 ---
 spring:
   config:

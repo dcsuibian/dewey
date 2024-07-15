@@ -4,6 +4,7 @@ import com.dcsuibian.dewey.entity.User;
 import com.dcsuibian.dewey.exception.BusinessException;
 import com.dcsuibian.dewey.po.UserPo;
 import com.dcsuibian.dewey.repository.UserPoRepository;
+import com.dcsuibian.dewey.service.SmsService;
 import com.dcsuibian.dewey.service.UserService;
 import com.dcsuibian.dewey.util.Util;
 import com.dcsuibian.dewey.vo.PageWrapper;
@@ -24,12 +25,14 @@ public class UserServiceImpl implements UserService {
     private final UserPoRepository poRepository;
     private final PasswordEncoder passwordEncoder;
     private final StringRedisTemplate redisTemplate;
+    private final SmsService smsService;
 
     @Autowired
-    public UserServiceImpl(UserPoRepository poRepository, PasswordEncoder passwordEncoder, StringRedisTemplate redisTemplate) {
+    public UserServiceImpl(UserPoRepository poRepository, PasswordEncoder passwordEncoder, StringRedisTemplate redisTemplate, SmsService smsService) {
         this.poRepository = poRepository;
         this.passwordEncoder = passwordEncoder;
         this.redisTemplate = redisTemplate;
+        this.smsService = smsService;
     }
 
     @Override
@@ -100,8 +103,7 @@ public class UserServiceImpl implements UserService {
             codeValue = Util.generateRandomNumber(6);
             redisTemplate.opsForValue().set(codeKey, codeValue, 5, TimeUnit.MINUTES);
         }
-        // TODO 发送验证码
-        log.info("preLogin验证码：{}", codeValue);
+        smsService.send(phoneNumber, codeValue);
     }
 
     @Override
@@ -126,8 +128,7 @@ public class UserServiceImpl implements UserService {
             codeValue = Util.generateRandomNumber(6);
             redisTemplate.opsForValue().set(codeKey, codeValue, 5, TimeUnit.MINUTES);
         }
-        // TODO 发送验证码
-        log.info("preRegister验证码：{}", codeValue);
+        smsService.send(phoneNumber, codeValue);
     }
 
     private User getById(long id) {
