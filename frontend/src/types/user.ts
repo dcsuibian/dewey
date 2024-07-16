@@ -8,4 +8,10 @@ interface User {
   gender: '男' | '女' | '保密'
 }
 
-export type { User }
+interface Register {
+  type: 'phone_number_and_verification_code'
+  phoneNumber: string
+  verificationCode: string
+}
+
+export type { User, Register }

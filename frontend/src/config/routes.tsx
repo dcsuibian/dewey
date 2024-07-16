@@ -15,6 +15,7 @@ import Layout from '@/components/Layout'
 import Login from '@/pages/Login'
 import React from 'react'
 import NotFound from '@/pages/NotFound'
+import Register from '@/pages/Register'
 
 export type Route = {
   path: string
@@ -24,6 +25,7 @@ export type Route = {
   icon?: React.ReactNode
 }
 export const HOME_PATHNAME = '/'
+export const REGISTER_PATHNAME = '/register'
 export const LOGIN_PATHNAME = '/login'
 
 const originalRoutes: Route[] = [
@@ -87,6 +89,10 @@ const originalRoutes: Route[] = [
         path: 'account-setting',
       },
     ],
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
   {
     path: '/login',

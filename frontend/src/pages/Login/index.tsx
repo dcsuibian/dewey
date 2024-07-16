@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import type { Login } from '@/types'
 import { sendOtp } from '@/apis/otp.ts'
+import { HOME_PATHNAME, REGISTER_PATHNAME } from '@/config/routes.tsx'
 
 type LoginType = Login['type']
 const phoneNumberPattern = /^1\d{10}$/
@@ -19,7 +20,6 @@ export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState<string>('')
   const onFinish = async (values: Record<string, string>) => {
     try {
-      console.log(values)
       await dispatch(
         login({
           type: loginType,
@@ -28,7 +28,7 @@ export default function Login() {
           verificationCode: values.verificationCode,
         }),
       )
-      navigate('/')
+      navigate(HOME_PATHNAME)
     } catch (err: unknown) {
       if (err instanceof Error) {
         message.error(err.message)
@@ -154,6 +154,15 @@ export default function Login() {
           <ProFormCheckbox noStyle name="autoLogin">
             自动登录
           </ProFormCheckbox>
+          <a
+            style={{
+              float: 'right',
+              marginLeft: '10px',
+            }}
+            onClick={() => navigate(REGISTER_PATHNAME)}
+          >
+            注册
+          </a>
           <a
             style={{
               float: 'right',

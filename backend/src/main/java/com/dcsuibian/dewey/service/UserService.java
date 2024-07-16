@@ -13,4 +13,6 @@ public interface UserService {
     void preLogin(String phoneNumber);
 
     void preRegister(String phoneNumber);
+
+    User registerByPhoneNumberAndVerificationCode(String phoneNumber, String verificationCode);
 }

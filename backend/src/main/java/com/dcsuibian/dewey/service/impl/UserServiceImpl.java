@@ -131,6 +131,53 @@ public class UserServiceImpl implements UserService {
         smsService.send(phoneNumber, codeValue);
     }
 
+    @Override
+    public User registerByPhoneNumberAndVerificationCode(String phoneNumber, String verificationCode) {
+        String codeKey = "dewey:register:code:" + phoneNumber;
+        String codeValue = redisTemplate.opsForValue().get(codeKey);
+        if (null == codeValue) {
+            throw new BusinessException("验证码已过期");
+        }
+        if (!codeValue.equals(verificationCode)) {
+            throw new BusinessException("验证码错误");
+        }
+        redisTemplate.delete(codeKey);
+        User user = new User();
+        user.setPhoneNumber(phoneNumber);
+        String name = null;
+        int minLength = 7;
+        int maxLength = 12;
+        for (int length = minLength; length <= maxLength; length++) {
+            for (int count = 0; count < 5; count++) {
+                String tempName = "手机用户" + Util.generateRandomNumber(length);
+                if (!poRepository.existsByName(tempName)) {
+                    name = tempName;
+                    break;
+                }
+            }
+            if (null != name) {
+                break;
+            }
+        }
+        if (null == name) {
+            throw new BusinessException("用户名生成失败");
+        }
+        user.setName(name);
+        user.setPassword(null);
+        user.setAvatar(null);
+        user.setEmail(null);
+        user.setGender(User.Gender.SECRET);
+        poRepository.save(UserPo.convert(user)); // 保存用户信息
+
+        Optional<UserPo> optional = poRepository.findByPhoneNumber(phoneNumber);
+        if (optional.isEmpty()) {
+            throw new BusinessException("注册失败，未知原因");
+        }
+        user = UserPo.convert(optional.get());
+        processForPrivateAccess(user);
+        return user;
+    }
+
     private User getById(long id) {
         Optional<UserPo> optional = poRepository.findById(id);
         return optional.map(UserPo::convert).orElse(null);
