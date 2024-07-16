@@ -30,7 +30,7 @@ public class SessionController {
 
     @PostMapping
     public ResponseWrapper<SessionVo> login(HttpSession httpSession, @RequestBody LoginVo loginVo) {
-        User user = null;
+        User user;
         if (LoginVo.Type.PHONE_NUMBER_AND_PASSWORD.equals(loginVo.getType())) {
             user = userService.loginByPhoneNumberAndPassword(loginVo.getPhoneNumber(), loginVo.getPassword());
         } else if (LoginVo.Type.PHONE_NUMBER_AND_VERIFICATION_CODE.equals(loginVo.getType())) {
