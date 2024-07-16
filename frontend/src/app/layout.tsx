@@ -1,6 +1,7 @@
-import './globals.scss'
 import type { Metadata } from 'next'
 import React from 'react'
+import { AntdRegistry } from '@ant-design/nextjs-registry'
+import './globals.scss'
 
 export const metadata: Metadata = {
   title: 'Dewey文库',
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body>{children}</body>
+      <body>
+        <AntdRegistry>{children}</AntdRegistry>
+      </body>
     </html>
   )
 }
