@@ -1,0 +1,24 @@
+.special {
+  .title {
+    span:first-child {
+      font-size: 20px
+    }
+
+    span:last-child {
+      float: right;
+    }
+  }
+
+  .content {
+    margin-top: 20px;
+    display: flex;
+
+    .first {
+      width: 300px;
+    }
+
+    .other {
+      margin-left: 30px;
+    }
+  }
+}

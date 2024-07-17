@@ -3,6 +3,7 @@ import styles from './page.module.scss'
 import Hot from './Hot'
 import New from './New'
 import HotSidebar from './HotSidebar'
+import Special from './Special'
 
 export const revalidate = 60 // 1分钟更新一次
 export default function Home() {
@@ -18,6 +19,9 @@ export default function Home() {
           </div>
           <div className={styles.hot}>
             <Hot />
+          </div>
+          <div className={styles.special}>
+            <Special />
           </div>
         </div>
         <div className={styles.right}>

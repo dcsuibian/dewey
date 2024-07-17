@@ -4,4 +4,4 @@ LABEL authors="dcsuibian"
 COPY dist/ /usr/share/nginx/html
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 7310
+EXPOSE 7309
