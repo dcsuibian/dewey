@@ -1,0 +1,16 @@
+.preview {
+  display: inline-block;
+
+  .cover {
+    border: 1px solid;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .title {
+    text-align: center;
+  }
+}

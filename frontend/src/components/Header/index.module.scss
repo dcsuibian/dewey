@@ -1,0 +1,26 @@
+.header {
+  background-color: #fefefe;
+  height: 70px;
+  border-bottom: 1px solid black;
+  width: 100%;
+
+  > div {
+    width: 1600px;
+    margin: 0 auto;
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 70px;
+
+      .logo {
+        font-size: 40px;
+      }
+
+      a {
+        margin-left: 20px;
+      }
+    }
+  }
+}

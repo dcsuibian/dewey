@@ -1,0 +1,24 @@
+.new {
+  .title {
+    span:first-child {
+      font-size: 20px
+    }
+
+    span:last-child {
+      float: right;
+    }
+  }
+
+  .line {
+    display: flex;
+
+    .item {
+      margin: 10px;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
