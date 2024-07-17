@@ -31,7 +31,7 @@ public class UserPo {
         po.setPhoneNumber(user.getPhoneNumber());
         po.setAvatar(user.getAvatar());
         po.setEmail(user.getEmail());
-        po.setGender(user.getGender().getCode());
+        po.setGender(null == user.getGender() ? null : user.getGender().getCode());
         return po;
     }
 

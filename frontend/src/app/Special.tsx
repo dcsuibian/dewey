@@ -1,18 +1,12 @@
 import styles from './Special.module.scss'
 import { Card } from 'antd'
 import DocPreview from '@/components/DocPreview'
-import { Doc } from '@/types'
 import DocTitle from '@/components/DocTitle'
+import { getNewestDocuments } from '@/apis/server/document'
 
-const docs: Doc[] = []
-for (let i = 1; i <= 11; i++) {
-  docs.push({
-    id: i,
-    title: '党政文章' + i,
-    cover: '/cover-sample.png',
-  })
-}
-export default function Special() {
+export default async function Special() {
+  const { result } = await getNewestDocuments(1, 11)
+  const docs = result.data
   return (
     <div className={styles.special}>
       <Card>

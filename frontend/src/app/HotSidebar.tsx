@@ -1,18 +1,11 @@
 import styles from './HotSidebar.module.scss'
 import { Card } from 'antd'
-import { Doc } from '@/types'
 import DocTitle from '@/components/DocTitle'
+import { getNewestDocuments } from '@/apis/server/document'
 
-const docs: Doc[] = []
-for (let i = 1; i <= 15; i++) {
-  docs.push({
-    id: i,
-    title: '热门文章' + i,
-    cover: '/cover-sample.png',
-  })
-}
-
-export default function HotSidebar() {
+export default async function HotSidebar() {
+  const { result } = await getNewestDocuments(1, 15)
+  const docs = result.data
   return (
     <div className={styles.hot}>
       <Card>

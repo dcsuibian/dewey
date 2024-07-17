@@ -1,18 +1,11 @@
 import styles from './Hot.module.scss'
 import { Card } from 'antd'
-import { Doc } from '@/types'
 import DocPreview from '@/components/DocPreview'
+import { getNewestDocuments } from '@/apis/server/document'
 
-const docs: Doc[] = []
-for (let i = 1; i <= 18; i++) {
-  docs.push({
-    id: i,
-    title: '热门文章' + i,
-    cover: '/cover-sample.png',
-  })
-}
-
-export default function Hot() {
+export default async function Hot() {
+  const { result } = await getNewestDocuments(1, 18)
+  const docs = result.data
   return (
     <div className={styles.hot}>
       <Card>

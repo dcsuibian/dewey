@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,10 +14,11 @@ public class Document {
     private Long id;
     private String title;
     private String description;
-    private String tags;
+    private List<String> tags;
     private Type type;
     private String cover;
     private String content;
+    private Long size;
     private User uploader;
     private Category category;
     private String accessLevel;

@@ -1,19 +1,12 @@
-import styles from './New.module.scss'
+import styles from './Newest.module.scss'
 import { Card } from 'antd'
-import { Doc } from '@/types'
 import DocPreview from '@/components/DocPreview'
 import DocTitle from '@/components/DocTitle'
+import { getNewestDocuments } from '@/apis/server/document'
 
-const docs: Doc[] = []
-for (let i = 1; i <= 24; i++) {
-  docs.push({
-    id: i,
-    title: '最新文章' + i,
-    cover: '/cover-sample.png',
-  })
-}
-
-export default function Hot() {
+export default async function Hot() {
+  const { result } = await getNewestDocuments(1, 24)
+  const docs = result.data
   return (
     <div className={styles.new}>
       <Card>

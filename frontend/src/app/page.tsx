@@ -1,7 +1,7 @@
 import Search from './Search'
 import styles from './page.module.scss'
 import Hot from './Hot'
-import New from './New'
+import Newest from './Newest'
 import HotSidebar from './HotSidebar'
 import Special from './Special'
 
@@ -15,7 +15,7 @@ export default function Home() {
       <div className={styles.content}>
         <div className={styles.left}>
           <div className={styles.new}>
-            <New />
+            <Newest />
           </div>
           <div className={styles.hot}>
             <Hot />
